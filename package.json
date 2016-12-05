@@ -1,44 +1,48 @@
 {
-    "name": "randombackend",
-    "description": "random distribution backen",
-    "version": "0.0.1",
-    "private": false,
-    "author": "Andreas Abdi",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/AndreasAbdi/randombackend.git"
-    },
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.2.x"
-    },
-    "scripts": {},
-    "main": "server.js",
-    "dependencies": {
-        "express": "^4.14.0",
-        "morgan": "^1.7.0",
-        "mongojs": "^2.4.0",
-        "path": "^0.12.7",
-        "ejs": "^2.5.3",
-        "cookie-parser": "latest",
-        "serve-static": "latest",
-        "body-parser": "latest",
-        "compression": "latest",
-        "method-override": "latest",
-        "express-session": "latest",
-        "static-favicon": "latest",
-        "consolidate": "latest",
-        "jade": "latest",
-        "mongoose": "latest",
-        "connect-mongo": "latest",
-        "connect-flash": "latest",
-        "underscore": "latest",
-        "async": "latest",
-        "view-helpers": "latest",
-        "forever": "latest"
-    },
-    "devDependencies": {
-        "supertest": "latest",
-        "should": "latest"
-    }
+  "name": "randombackend",
+  "description": "random distribution backen",
+  "version": "0.0.1",
+  "private": false,
+  "author": "Andreas Abdi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreasAbdi/randombackend.git"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "scripts": {},
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "mongojs": "^2.4.0",
+    "path": "^0.12.7",
+    "ejs": "^2.5.3",
+    "cookie-parser": "latest",
+    "serve-static": "latest",
+    "body-parser": "latest",
+    "compression": "latest",
+    "method-override": "latest",
+    "express-session": "latest",
+    "static-favicon": "latest",
+    "consolidate": "latest",
+    "mongoose": "latest",
+    "connect-mongo": "latest",
+    "connect-flash": "latest",
+    "underscore": "latest",
+    "async": "latest",
+    "view-helpers": "latest",
+    "forever": "latest"
+  },
+  "devDependencies": {
+    "should": "latest",
+    "supertest": "latest",
+
+    "typings": "^2.0.0",
+    "@types/jquery": "^2.0.33",
+    "@types/node": "^6.0.46",
+    "@types/express" :"^4.0.34"
+  }
 }
