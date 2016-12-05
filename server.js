@@ -1,50 +1,30 @@
-'use strict';
+// set up ========================
+var express = require('express');
+var app = express(); // create our app w/ express
+var mongoose = require('mongoose'); // mongoose for mongodb
+var morgan = require('morgan'); // log requests to the console (express4)
+var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
+var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+var database = require('./configs/database');
+var port = process.env.PORT || 8888; // set the port
 
-/**
- * Module dependencies.
- */
-var express = require('express'),
-    fs = require('fs'),
-    mongoose = require('mongoose');
 
-/**
- * Main application entry file.
- * Please note that the order of loading is important.
- */
+// configuration ===============================================================
+mongoose.connect(database.url); // connect to mongoDB database on modulus.io
+app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+app.use(morgan('dev')); // log every request to the console
+app.use(bodyParser.urlencoded({
+    'extended': 'true'
+})); // parse application/x-www-form-urlencoded
+app.use(bodyParser.json()); // parse application/json
+app.use(bodyParser.json({
+    type: 'application/vnd.api+json'
+})); // parse application/vnd.api+json as json
+app.use(methodOverride());
 
-// Initializing system variables
-var config = require('./config/config');
-var db     = mongoose.connect(config.db);
+// routes ======================================================================
+require('./src/routes.js')(app);
 
-//Bootstrap models
-var models_path = __dirname + '/app/models';
-var walk = function(path) {
-    fs.readdirSync(path).forEach(function(file) {
-        var newPath = path + '/' + file;
-        var stat = fs.statSync(newPath);
-        if (stat.isFile()) {
-            if (/(.*)\.(js|coffee)/.test(file)) {
-                require(newPath);
-            }
-        } else if (stat.isDirectory()) {
-            walk(newPath);
-        }
-    });
-};
-walk(models_path);
-
-var app = express();
-
-//express settings
-require('./config/express')(app, db);
-
-//Bootstrap routes
-require('./config/routes')(app);
-
-//Start the app by listening on <port>
-var port = config.port;
+// listen (start app with node server.js) ======================================
 app.listen(port);
-console.log('Express app started on port ' + port);
-
-//expose app
-exports = module.exports = app;
+console.log("App listening on port : " + port);
