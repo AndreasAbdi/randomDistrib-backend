@@ -1,0 +1,6 @@
+{
+    "db": "mongodb://localhost/mean",
+    "app": {
+        "name": "randomBackend - random distribution backen"
+    }
+}
