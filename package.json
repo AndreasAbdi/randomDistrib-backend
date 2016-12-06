@@ -1,48 +1,40 @@
 {
-  "name": "randombackend",
-  "description": "random distribution backen",
-  "version": "0.0.1",
-  "private": false,
-  "author": "Andreas Abdi",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AndreasAbdi/randombackend.git"
+  "name": "random-backend",
+  "version": "0.0.0",
+  "description": "random-backend",
+  "license": "MIT",
+  "repository": "",
+  "author": "",
+  "keywords": [
+    ""
+  ],
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "clean": "rimraf lib",
+    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "build": "npm run clean && npm run lint && echo Using TypeScript && tsc --version && tsc --pretty",
+    "test": "npm run build && mocha --compilers ts:ts-node/register --recursive test/**/*-spec.ts",
+    "watch": "npm run build -- --watch",
+    "watch:test": "npm run test -- --watch"
   },
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
-  },
-  "scripts": {},
-  "main": "server.js",
   "dependencies": {
-    "express": "^4.14.0",
-    "morgan": "^1.7.0",
-    "mongojs": "^2.4.0",
-    "path": "^0.12.7",
-    "ejs": "^2.5.3",
-    "cookie-parser": "latest",
-    "serve-static": "latest",
-    "body-parser": "latest",
-    "compression": "latest",
-    "method-override": "latest",
-    "express-session": "latest",
-    "static-favicon": "latest",
-    "consolidate": "latest",
-    "mongoose": "latest",
-    "connect-mongo": "latest",
-    "connect-flash": "latest",
-    "underscore": "latest",
-    "async": "latest",
-    "view-helpers": "latest",
-    "forever": "latest"
   },
   "devDependencies": {
-    "should": "latest",
-    "supertest": "latest",
-
-    "typings": "^2.0.0",
-    "@types/jquery": "^2.0.33",
-    "@types/node": "^6.0.46",
-    "@types/express" :"^4.0.34"
+    "@types/chai": "3.4.30",
+    "@types/mocha": "2.2.29",
+    "@types/node": "6.0.31",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.1",
+    "rimraf": "^2.5.4",
+    "ts-node": "^1.2.2",
+    "tslint": "3.15.1",
+    "typescript": "2.0.3"
+  },
+  "engines": {
+    "node": ">=4.0.0"
   }
 }

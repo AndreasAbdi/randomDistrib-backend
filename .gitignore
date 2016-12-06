@@ -1,8 +1,3 @@
-.DS_Store
-.nodemonignore
-.sass-cache/
-.bower-*/
+coverage/
 node_modules/
-public/lib
-test/coverage
-mean.iml
+npm-debug.log
