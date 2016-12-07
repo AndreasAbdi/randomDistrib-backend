@@ -1,15 +1,13 @@
-
+import setupSocket from './client';
 
 export class RoomSocket {
     name: string;
     data: any;
 
-    constructor(private io: any) {
+    constructor(private io: SocketIO.Server) {
         this.io.on('connection', function(socket) {
-            console.log('a user has connected');
-            socket.on('chat message', function(msg) {
-                console.log('message: ' + msg);
-            });
+            console.log('a user connected');
+            setupSocket(socket, this.io);
         });
     }
 }
