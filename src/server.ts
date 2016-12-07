@@ -5,6 +5,8 @@ import * as serveStatic from 'serve-static';
 import * as socketIo from 'socket.io';
 import * as morgan from 'morgan';
 
+import {RoomSocket} from './socket/room';
+
 declare var process;
 declare var __dirname;
 
@@ -12,6 +14,7 @@ class Server {
     private server: any;
     private root: string;
     private port: number;
+    private socket: any;
     public app: any;
 
     public static bootstrap(): Server { return new Server(); }
@@ -55,7 +58,10 @@ class Server {
 
     private databases(): void { }
 
-    private sockets(): void { }
+    private sockets(): void {
+        this.socket = socketIo(this.server);
+        let roomSocket = new RoomSocket(this.socket);
+    }
 
     private listen(): void {
         this.server
