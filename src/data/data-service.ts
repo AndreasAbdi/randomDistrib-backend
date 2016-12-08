@@ -1,10 +1,11 @@
 import Slice from './slice';
+import defaultData from './default-data';
 
 class SingletonClass {
 
     private static _instance: SingletonClass = new SingletonClass();
 
-    private slices: Slice[];
+    private data: typeof defaultData;
 
     public static getInstance(): SingletonClass {
         return SingletonClass._instance;
@@ -15,25 +16,28 @@ class SingletonClass {
             throw new Error('Error: Instantiation failed: Use SingletonDemo.getInstance() instead of new.');
         }
         SingletonClass._instance = this;
-        this.slices = [
-            { name: `LOL`, weight: 50 },
-            { name: `OW`, weight: 50 }
-        ];
+        this.data = defaultData;
     }
 
-    list(): Slice[] {
-        return this.slices;
+    list(roomName: string): Slice[] {
+        return this.data[roomName] || this.data['default'];
     }
 
-    addSlice(slice: Slice): void {
-        this.slices.push(slice);
+    addSlice(slice: Slice, roomName: string): void {
+        if (!this.data[roomName]) {
+            return;
+         }
+        this.data[roomName].push(slice);
     };
 
-    removeSlice(slice: Slice): void {
-        let sliceIndex = this.slices.findIndex(
-            value => value.name === slice.name);
+    removeSlice(slice: Slice, roomName: string): void {
+        if (!this.data[roomName]) {
+            return;
+        }
+        let sliceIndex = this.data[roomName].findIndex(
+            value => value.name == slice.name);
         if (sliceIndex !== undefined) {
-            this.slices.splice(sliceIndex, 1);
+            this.data[roomName].splice(sliceIndex, 1);
         }
     }
 }
