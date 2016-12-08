@@ -8,9 +8,9 @@ export default function setupSocket(socket: SocketIO.Socket, io: SocketIO.Server
 function addEventListeners(socket: SocketIO.Socket, io: SocketIO.Server): void {
     socket.on('connect', connect(io));
     socket.on('disconnect', disconnect(io));
-    socket.on('add-slice', addSlice(socket, io));
-    socket.on('remove-slice', removeSlice(socket, io));
-    socket.on('decide', decide(io));
+    socket.on('add-slice', addSlice( io));
+    socket.on('remove-slice', removeSlice( io));
+    socket.on('decide', decide( io));
     socket.on('list', list(socket, io));
     socket.on('chat-message', chatMessage);
 }
@@ -35,23 +35,24 @@ function disconnect(io: SocketIO.Server): () => void {
     return () => { };
 }
 
-function addSlice(socket: SocketIO.Socket, io: SocketIO.Server): (any) => void {
-    // TODO
+function addSlice(io: SocketIO.Server): (any) => void {
     return (slice) => {
         Data.addSlice(slice);
-        socket.emit('list', Data.list());
+        io.emit('list', Data.list());
     };
 }
 
-function removeSlice(socket: SocketIO.Socket, io: SocketIO.Server): (any) => void {
+function removeSlice(io: SocketIO.Server): (any) => void {
     return (slice) => {
         Data.removeSlice(slice);
-        socket.emit('list', Data.list());
+        io.emit('list', Data.list());
     };
 }
 
 
 function decide(io: SocketIO.Server): (any) => void {
-    // TODO
-    return(s)=>{return randomService(s); };
+    return (s) => {
+        const result = randomService(s);
+        io.emit('decision', result);
+    };
 }

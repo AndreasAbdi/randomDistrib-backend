@@ -7,7 +7,7 @@ export class RoomSocket {
     constructor(private io: SocketIO.Server) {
         this.io.on('connection', function(socket) {
             console.log('a user connected');
-            setupSocket(socket, this.io);
+            setupSocket(socket, io);
         });
     }
 }
