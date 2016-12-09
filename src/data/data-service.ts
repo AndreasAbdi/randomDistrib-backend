@@ -19,14 +19,25 @@ class SingletonClass {
         this.data = defaultData;
     }
 
+    getRooms(): string[] {
+        return Object.keys(this.data);
+    }
+
     list(roomName: string): Slice[] {
         return this.data[roomName] || this.data['default'];
+    }
+
+    addRoom(roomName: string): void {
+        if (this.data[roomName]) {
+            return;
+        }
+        this.data[roomName] = [];
     }
 
     addSlice(slice: Slice, roomName: string): void {
         if (!this.data[roomName]) {
             return;
-         }
+        }
         this.data[roomName].push(slice);
     };
 
@@ -35,7 +46,7 @@ class SingletonClass {
             return;
         }
         let sliceIndex = this.data[roomName].findIndex(
-            value => value.name == slice.name);
+            value => value.name === slice.name);
         if (sliceIndex !== undefined) {
             this.data[roomName].splice(sliceIndex, 1);
         }

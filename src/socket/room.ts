@@ -8,8 +8,8 @@ export default function socketRoomSetup(socket: SocketIO.Socket, io: SocketIO.Se
 function addEventListeners(socket: SocketIO.Socket, io: SocketIO.Server): void {
     socket.on('connect', connect(io));
     socket.on('disconnect', disconnect(io));
-    socket.on('join-room', join(socket));
-    socket.on('list-rooms', list(socket, io));
+    socket.on('join-room', join(socket, io));
+    socket.on('list-room', list(socket, io));
 }
 
 function connect(io: SocketIO.Server): () => void {
@@ -24,10 +24,10 @@ function disconnect(io: SocketIO.Server): () => void {
 
 // Join a room.
 // Socket should only ever be in one room.
-function join(socket: SocketIO.Socket): (string) => void {
-    return (roomName) => { joinRoom(roomName, socket); };
+function join(socket: SocketIO.Socket, io: SocketIO.Server): (string) => void {
+    return (roomName) => { joinRoom(roomName, socket, io); };
 }
 
 function list(socket: SocketIO.Socket, io: SocketIO.Server): (socket: SocketIO.Socket, io: SocketIO.Server) => void {
-    return listRoom;
+    return ()=>{listRoom(socket, io)};
 }
