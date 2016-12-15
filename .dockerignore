@@ -1,4 +1,11 @@
 README.md
 node_modules
+
 .gitignore
 .vscode
+.travis.yml
+
+**/*.js
+**/*.js.map
+
+test
