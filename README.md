@@ -1,5 +1,7 @@
 # Random Distribution Backend Server
 
+[![Build Status](https://travis-ci.org/AndreasAbdi/randomDistrib-backend.svg?branch=master)](https://travis-ci.org/AndreasAbdi/randomDistrib-backend)
+
 Backend server for handling socket.io calls from random distribution front end.
 Written using typescript built to javascript,
 and built on expressJs, nodeJs, socket.io and a bunch of other libraries.
