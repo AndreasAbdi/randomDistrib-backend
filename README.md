@@ -13,8 +13,8 @@ and built on expressJs, nodeJs, socket.io and a bunch of other libraries.
 install [docker](https://www.docker.com/)
 
 ```code
-docker build -t randomBackend
-docker run -d -p 5000:5000 --name some_name randomBackend
+docker build -t random-backend
+docker run -d -p 5000:5000 --name some_name random-backend
 ```
 
 then go to your docker host's port 5000 in your browser.
