@@ -1,25 +1,28 @@
-# Using this module in other modules
+# Random Distribution Backend Server
 
-Here is a quick example of how this module can be used in other modules. The [TypeScript Module Resolution Logic](https://www.typescriptlang.org/docs/handbook/module-resolution.html) makes it quite easy. The file `src/index.ts` acts as an aggregator of all the functionality in this module. It imports from other files and re-exports to provide a unified interface for this module. The _package.json_ file contains `main` attribute that points to the generated `lib/index.js` file and `typings` attribute that points to the generated `lib/index.d.ts` file.
+Backend server for handling socket.io calls from random distribution front end.
+Written using typescript built to javascript,
+and built on expressJs, nodeJs, socket.io and a bunch of other libraries.
 
-> If you are planning to have code in multiple files (which is quite natural for a NodeJS module) that users can import, make sure you update `src/index.ts` file appropriately.
+## Install
 
-Now assuming you have published this amazing module to _npm_ with the name `my-amazing-lib`, and installed it in the module in which you need it -
+### Docker
 
-- To use the `Greeter` class in a TypeScript file -
+install [docker](https://www.docker.com/)
 
-```ts
-import { Greeter } from "my-amazing-lib";
-
-const greeter = new Greeter("World!");
-greeter.greet();
+```code
+docker build -t randomBackend
+docker run -d -p 5000:5000 --name some_name randomBackend
 ```
 
-- To use the `Greeter` class in a JavaScript file -
+then go to your docker host's port 5000 in your browser.
 
-```js
-const Greeter = require('my-amazing-lib').Greeter;
+### Local
+- install [node](https://nodejs.org/en/)
+- install [npm](https://www.npmjs.com/)
+- run `git clone https://github.com/AndreasAbdi/randomDistrib-backend.git`
+- run `npm install` in your shell at wherever you installed this directory.
 
-const greeter = new Greeter('World!');
-greeter.greet();
-```
+## License
+
+MIT © [Andreas Abdi](https://github.com/AndreasAbdi)
