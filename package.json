@@ -12,8 +12,10 @@
     "lib"
   ],
   "scripts": {
+    "start": "nodemon server.js",
     "clean": "rimraf lib",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "build-watch": "tsc --version && tsc -w --pretty",
     "build": "tsc --version && tsc --pretty",
     "build-full": "npm run clean && npm run lint && echo Using TypeScript && tsc --version && tsc --pretty",
     "test": "npm run build && mocha --compilers ts:ts-node/register --recursive test/**/*-spec.ts",
@@ -32,6 +34,7 @@
     "@types/chai": "3.4.30",
     "@types/mocha": "2.2.29",
     "@types/node": "6.0.31",
+    "@types/sinon": "^1.16.33",
     "@types/socket.io": "^1.4.27",
     "@types/express": "^4.0.34",
     "@types/morgan": "^1.7.32",
@@ -39,7 +42,7 @@
     "chai": "^3.5.0",
     "mocha": "^3.0.1",
     "sinon": "^1.17.6",
-    
+
     "rimraf": "^2.5.4",
     "nodemon": "^1.11.0",
 
