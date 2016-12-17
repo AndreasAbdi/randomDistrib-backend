@@ -1,11 +1,14 @@
 import Slice from './slice';
 import defaultData from './default-data';
+import RoomData from './room-data';
+import ClientData from './client-data';
 
 class SingletonClass {
 
   private static _instance: SingletonClass = new SingletonClass();
 
   private data: typeof defaultData;
+  private usernames: { [id: string]: string } = {};
 
   public static getInstance(): SingletonClass {
     return SingletonClass._instance;
@@ -24,7 +27,33 @@ class SingletonClass {
   }
 
   list(roomName: string): Slice[] {
-    return this.data[roomName] || this.data['default'];
+    return this.data[roomName] || [];
+  }
+
+  getName(id: string): string {
+    return this.usernames[id] || '';
+  }
+
+  setName(id: string, name: string): void {
+    this.usernames[id] = name;
+  }
+
+  getNames(): string[] {
+    return Object
+      .keys(this.usernames)
+      .map((id) => this.usernames[id]);
+  }
+
+  // TODO
+  getNamesInRoom(roomName: string): string[] {
+    return [];
+  }
+
+
+  removeName(id: string): void {
+    if (this.usernames[id]) {
+      delete this.usernames[id];
+    }
   }
 
   addRoom(roomName: string): void {
@@ -57,6 +86,10 @@ class SingletonClass {
   }
 }
 
+class UserName {
+  id: string;
+  name: string;
+};
 
 const singleton = SingletonClass.getInstance();
 export default singleton;
