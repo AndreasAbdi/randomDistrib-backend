@@ -9,9 +9,9 @@ export default function socketDistributionSetup(socket: SocketIO.Socket, io: Soc
 
 function addEventListeners(socket: SocketIO.Socket, io: SocketIO.Server): void {
   socket.on('disconnect', disconnect(socket, io));
-  socket.on('setName', (name: string) => setName(name, socket, io));
-  socket.on('getName', () => getName(socket, io));
-  socket.on('getClient', () => getClients(socket, io));
+  socket.on('set-name', (name: string) => setName(name, socket, io));
+  socket.on('get-name', () => getName(socket, io));
+  socket.on('get-names', () => getClients(socket, io));
 }
 
 function disconnect(socket: SocketIO.Socket, io: SocketIO.Server): () => void {

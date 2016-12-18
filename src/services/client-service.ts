@@ -4,12 +4,15 @@ export function setName(name: string, socket: SocketIO.Socket, io: SocketIO.Serv
   dataService.setName(socket.id, name);
 }
 
-export function getName(socket: SocketIO.Socket, io: SocketIO.Server): string {
-  return dataService.getName(socket.id);
+export function getName(socket: SocketIO.Socket, io: SocketIO.Server): void {
+
+  const username = dataService.getName(socket.id);
+  socket.emit('update-name', username);
 }
 
-export function getClients(socket: SocketIO.Socket, io: SocketIO.Server): string[] {
-  return dataService.getNames();
+export function getClients(socket: SocketIO.Socket, io: SocketIO.Server): void {
+  const usernames = dataService.getNames();
+  socket.emit('update-names', usernames);
 }
 
 export function removeName(socket: SocketIO.Socket, io: SocketIO.Server) {
