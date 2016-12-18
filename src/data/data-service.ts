@@ -1,7 +1,5 @@
 import Slice from './slice';
 import defaultData from './default-data';
-import RoomData from './room-data';
-import ClientData from './client-data';
 
 class SingletonClass {
 
@@ -9,6 +7,7 @@ class SingletonClass {
 
   private data: typeof defaultData;
   private usernames: { [id: string]: string } = {};
+  private roomToMembers: {[roomName: string]: string[]} = {};
 
   public static getInstance(): SingletonClass {
     return SingletonClass._instance;
@@ -44,9 +43,8 @@ class SingletonClass {
       .map((id) => this.usernames[id]);
   }
 
-  // TODO
   getNamesInRoom(roomName: string): string[] {
-    return [];
+    return this.roomToMembers[roomName];
   }
 
 
@@ -86,10 +84,6 @@ class SingletonClass {
   }
 }
 
-class UserName {
-  id: string;
-  name: string;
-};
 
 const singleton = SingletonClass.getInstance();
 export default singleton;
