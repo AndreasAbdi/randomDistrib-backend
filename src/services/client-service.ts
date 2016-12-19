@@ -12,7 +12,7 @@ export function getName(socket: SocketIO.Socket, io: SocketIO.Server): void {
 
 export function getClients(socket: SocketIO.Socket, io: SocketIO.Server): void {
   const usernames = dataService.getNames();
-  socket.emit('update-names', usernames);
+  io.emit('update-names', usernames);
 }
 
 export function removeName(socket: SocketIO.Socket, io: SocketIO.Server) {
