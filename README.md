@@ -13,7 +13,7 @@ and built on expressJs, nodeJs, socket.io and a bunch of other libraries.
 install [docker](https://www.docker.com/)
 
 ```code
-docker build -t random-backend
+docker build -t random-backend .
 docker run -d -p 5000:5000 --name some_name random-backend
 ```
 
